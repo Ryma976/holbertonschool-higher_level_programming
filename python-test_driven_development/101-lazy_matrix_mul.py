@@ -24,7 +24,21 @@ def lazy_matrix_mul(m_a, m_b):
         return np.dot(m_a, m_b)
     except ValueError as e:
         if "not aligned" in str(e) or "mismatch" in str(e):
-            raise ValueError("shapes (1,0) and (2,2) not aligned: 0 (dim 1) != 2 (dim 0)")
+            try:
+                # Dynamically determine shapes to match legacy NumPy error strings
+                rows_a = len(m_a)
+                cols_a = len(m_a[0]) if rows_a > 0 else 0
+                rows_b = len(m_b)
+                cols_b = len(m_b[0]) if rows_b > 0 else 0
+                
+                raise ValueError(
+                    "shapes ({},{}) and ({},{}) not aligned: "
+                    "{} (dim 1) != {} (dim 0)".format(
+                        rows_a, cols_a, rows_b, cols_b, cols_a, rows_b
+                    )
+                )
+            except Exception:
+                pass
         raise ValueError(str(e))
     except TypeError as e:
         raise TypeError(str(e))

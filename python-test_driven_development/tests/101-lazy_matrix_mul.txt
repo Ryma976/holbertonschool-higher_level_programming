@@ -18,8 +18,14 @@ Test bad types passed to the arrays (strings):
     ...
     TypeError: Scalar operands are not allowed, use '*' instead
 
-Test non-homogeneous nested arrays or misalignment:
+Test non-homogeneous nested arrays or misalignment (Case 1):
     >>> lazy_matrix_mul([[]], [[5, 6], [7, 8]])
     Traceback (most recent call last):
     ...
     ValueError: shapes (1,0) and (2,2) not aligned: 0 (dim 1) != 2 (dim 0)
+
+Test non-homogeneous nested arrays or misalignment (Case 2):
+    >>> lazy_matrix_mul([[5, 6], [7, 8]], [[]])
+    Traceback (most recent call last):
+    ...
+    ValueError: shapes (2,2) and (1,0) not aligned: 2 (dim 1) != 1 (dim 0)
