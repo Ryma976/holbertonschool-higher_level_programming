@@ -20,6 +20,16 @@ def lazy_matrix_mul(m_a, m_b):
     if isinstance(m_a, str) or isinstance(m_b, str):
         raise TypeError("Scalar operands are not allowed, use '*' instead")
 
+    # Force immediate legacy type tracking if strings are embedded in rows
+    if isinstance(m_a, list):
+        for row in m_a:
+            if isinstance(row, list) and any(isinstance(x, str) for x in row):
+                raise TypeError("invalid data type for einsum")
+    if isinstance(m_b, list):
+        for row in m_b:
+            if isinstance(row, list) and any(isinstance(x, str) for x in row):
+                raise TypeError("invalid data type for einsum")
+
     try:
         return np.dot(m_a, m_b)
     except ValueError as e:
@@ -40,6 +50,6 @@ def lazy_matrix_mul(m_a, m_b):
                 pass
         raise ValueError(str(e))
     except TypeError as e:
-        if "itemsize" in str(e):
+        if "itemsize" in str(e) or "data type" in str(e):
             raise TypeError("invalid data type for einsum")
         raise TypeError(str(e))
