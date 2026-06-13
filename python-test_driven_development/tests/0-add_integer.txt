@@ -42,7 +42,13 @@ Test type validation error handling for b:
     ...
     TypeError: b must be an integer
 
-    >>> add_integer(4, [1, 2, 3])
+Test NaN and Infinity error handling:
+    >>> add_integer(float('nan'), 4)
+    Traceback (most recent call last):
+    ...
+    TypeError: a must be an integer
+
+    >>> add_integer(4, float('inf'))
     Traceback (most recent call last):
     ...
     TypeError: b must be an integer

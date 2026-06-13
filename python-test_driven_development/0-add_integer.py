@@ -17,11 +17,18 @@ def add_integer(a, b=98):
         The sum of a and b as an integer.
 
     Raises:
-        TypeError: If either a or b is not an integer or float.
+        TypeError: If either a or b is not an integer or float,
+                   or if they are NaN or Infinity.
     """
     if not isinstance(a, (int, float)):
         raise TypeError("a must be an integer")
     if not isinstance(b, (int, float)):
+        raise TypeError("b must be an integer")
+
+    # Check for NaN or Infinity without importing math
+    if a != a or a in [float('inf'), float('-inf')]:
+        raise TypeError("a must be an integer")
+    if b != b or b in [float('inf'), float('-inf')]:
         raise TypeError("b must be an integer")
 
     return int(a) + int(b)
