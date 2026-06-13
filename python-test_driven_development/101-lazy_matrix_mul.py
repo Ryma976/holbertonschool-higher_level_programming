@@ -20,7 +20,6 @@ def lazy_matrix_mul(m_a, m_b):
     if isinstance(m_a, str) or isinstance(m_b, str):
         raise TypeError("Scalar operands are not allowed, use '*' instead")
 
-    # Force immediate legacy type tracking if strings are embedded in rows
     if isinstance(m_a, list):
         for row in m_a:
             if isinstance(row, list) and any(isinstance(x, str) for x in row):
@@ -33,6 +32,8 @@ def lazy_matrix_mul(m_a, m_b):
     try:
         return np.dot(m_a, m_b)
     except ValueError as e:
+        if "setting an array element with a sequence" in str(e):
+            raise ValueError("setting an array element with a sequence.")
         if "not aligned" in str(e) or "mismatch" in str(e):
             try:
                 rows_a = len(m_a)
