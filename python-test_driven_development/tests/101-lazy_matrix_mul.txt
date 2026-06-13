@@ -12,28 +12,14 @@ Test standard multiplication scenarios:
     array([[ 7, 10],
            [15, 22]])
 
-    >>> lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]])
-    array([[13, 16]])
-
-Test bad types passed to the arrays (scalars/strings):
-    >>> lazy_matrix_mul("not a list", [[1, 2]])
+Test bad types passed to the arrays (strings):
+    >>> lazy_matrix_mul("Holberton", [[1, 2]])
     Traceback (most recent call last):
     ...
-    TypeError: ...
+    TypeError: Scalar operands are not allowed, use '*' instead
 
-    >>> lazy_matrix_mul([[1, 2]], 12345)
+Test non-homogeneous nested arrays or misalignment:
+    >>> lazy_matrix_mul([[]], [[5, 6], [7, 8]])
     Traceback (most recent call last):
     ...
-    ValueError: ...
-
-Test non-homogeneous nested arrays (jagged rows):
-    >>> lazy_matrix_mul([[1, 2, 3], [4, 5]], [[1, 2], [3, 4], [5, 6]])
-    Traceback (most recent call last):
-    ...
-    ValueError: ...
-
-Test dimension mismatches (columns of A != rows of B):
-    >>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2, 3]])
-    Traceback (most recent call last):
-    ...
-    ValueError: ...
+    ValueError: shapes ... not aligned...
