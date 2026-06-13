@@ -25,12 +25,11 @@ def lazy_matrix_mul(m_a, m_b):
     except ValueError as e:
         if "not aligned" in str(e) or "mismatch" in str(e):
             try:
-                # Dynamically determine shapes to match legacy NumPy error strings
                 rows_a = len(m_a)
                 cols_a = len(m_a[0]) if rows_a > 0 else 0
                 rows_b = len(m_b)
                 cols_b = len(m_b[0]) if rows_b > 0 else 0
-                
+
                 raise ValueError(
                     "shapes ({},{}) and ({},{}) not aligned: "
                     "{} (dim 1) != {} (dim 0)".format(
@@ -41,4 +40,6 @@ def lazy_matrix_mul(m_a, m_b):
                 pass
         raise ValueError(str(e))
     except TypeError as e:
+        if "itemsize" in str(e):
+            raise TypeError("invalid data type for einsum")
         raise TypeError(str(e))
