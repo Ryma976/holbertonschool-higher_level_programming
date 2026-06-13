@@ -32,6 +32,7 @@ def matrix_divided(matrix, div):
         for element in row:
             if not isinstance(element, (int, float)):
                 raise TypeError(err_msg)
+            # Matrices with inf or nan must raise a TypeError
             if element != element or element in [float('inf'), float('-inf')]:
                 raise TypeError(err_msg)
 
@@ -44,7 +45,9 @@ def matrix_divided(matrix, div):
 
     if div == 0:
         raise ZeroDivisionError("division by zero")
-    if div != div or div in [float('inf'), float('-inf')]:
+
+    # nan is not a valid number for div, but inf/-inf are valid
+    if div != div:
         raise TypeError("div must be a number")
 
     return [[round(elem / div, 2) for elem in row] for row in matrix]
