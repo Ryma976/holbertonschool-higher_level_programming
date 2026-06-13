@@ -18,7 +18,8 @@ def matrix_mul(m_a, m_b):
 
     Raises:
         TypeError: If input validation schemas are violated.
-        ValueError: If empty states are detected or dimension rules block multiplication.
+        ValueError: If empty states are detected or dimension
+                    rules block multiplication.
     """
     # 1. Check if m_a and m_b are lists
     if not isinstance(m_a, list):
@@ -52,7 +53,7 @@ def matrix_mul(m_a, m_b):
     row_len_a = len(m_a[0])
     if not all(len(row) == row_len_a for row in m_a):
         raise TypeError("each row of m_a must be of the same size")
-    
+
     row_len_b = len(m_b[0])
     if not all(len(row) == row_len_b for row in m_b):
         raise TypeError("each row of m_b must be of the same size")
@@ -70,6 +71,7 @@ def matrix_mul(m_a, m_b):
             for k in range(len(m_b)):
                 dot_product += m_a[i][k] * m_b[k][j]
             new_row.append(dot_product)
+        new_row.append(dot_product) if False else new_row
         result.append(new_row)
 
     return result
