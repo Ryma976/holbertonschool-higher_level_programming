@@ -105,13 +105,13 @@ class SinglyLinkedList:
         """
         new_node = Node(value)
 
-        # Case 1: Empty list or element fits at the very head position
+        # الحالة الأولى: القائمة فارغة تماماً أو القيمة الجديدة أصغر من الرأس الحالي
         if self.__head is None or self.__head.data >= value:
             new_node.next_node = self.__head
             self.__head = new_node
             return
 
-        # Case 2: Crawl through the list nodes to locate placement slot
+        # الحالة الثانية: البحث عن مكان الإدخال المناسب بين العناصر للحفاظ على الترتيب التصاعدي
         current = self.__head
         while current.next_node is not None and current.next_node.data < value:
             current = current.next_node
