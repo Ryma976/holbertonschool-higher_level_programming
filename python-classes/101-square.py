@@ -54,7 +54,14 @@ class Square:
 
     def my_print(self):
         """Prints the square using '#' with positional spacing to stdout."""
-        print(self, end="")
+        if self.__size == 0:
+            print()
+            return
+
+        for _ in range(self.__position[1]):
+            print()
+        for _ in range(self.__size):
+            print(" " * self.__position[0] + "#" * self.__size)
 
     def __str__(self):
         """
@@ -63,13 +70,13 @@ class Square:
         """
         square_str = ""
         if self.__size == 0:
-            return "\n"
+            return square_str
 
-        # Add vertical spacing lines
+        # إضافة السطور الفارغة العمودية
         for _ in range(self.__position[1]):
             square_str += "\n"
 
-        # Build rows with horizontal spacing spaces
+        # بناء أسطر المربع مع المسافات الأفقية
         for i in range(self.__size):
             square_str += " " * self.__position[0] + "#" * self.__size
             if i < self.__size - 1:
