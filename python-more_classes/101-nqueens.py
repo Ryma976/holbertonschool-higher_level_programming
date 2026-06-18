@@ -31,23 +31,31 @@ def validate_input():
 
 def is_safe(board, row, col):
     """Checks if a queen can be placed at board[row][col]."""
-    for i in range(row):if board[i] == col or            board[i] - i == col - row or            board[i] + i == col + row:
+    for i in range(row):
+        if (board[i] == col or
+                board[i] - i == col - row or
+                board[i] + i == col + row):
             return False
     return True
 
 
 def solve_nqueens(row, n, board):
     """Recursively solves the N Queens puzzle using backtracking."""
-    if row == n:solution = [[i, board[i]] for i in range(n)]
+    if row == n:
+        solution = [[i, board[i]] for i in range(n)]
         print(solution)
         return
 
     for col in range(n):
         if is_safe(board, row, col):
             board[row] = col
-            solve_nqueens(row + 1, n, board)def main():
+            solve_nqueens(row + 1, n, board)
+
+
+def main():
     """Main execution entry point."""
-    n = validate_input()board = [0] * n
+    n = validate_input()
+    board = [0] * n
     solve_nqueens(0, n, board)
 
 
