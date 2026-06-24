@@ -1,14 +1,16 @@
-The `BaseGeometry` class with `area` and `integer_validator`.
+=====================================
+How to use 7-base_geometry module
+=====================================
 
-To use it, import the class:
+Importing the class:
     >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
     >>> bg = BaseGeometry()
 
-Validating correct integers (should pass without output):
+Validating integers:
     >>> bg.integer_validator("width", 10)
     >>> bg.integer_validator("height", 89)
 
-Validating non-integers (should raise TypeError):
+Validating type errors:
     >>> bg.integer_validator("name", "John")
     Traceback (most recent call last):
     ...
@@ -24,19 +26,18 @@ Validating non-integers (should raise TypeError):
     ...
     TypeError: is_active must be an integer
 
-Validating values less than or equal to 0 (should raise ValueError):
+Validating value errors:
     >>> bg.integer_validator("age", 0)
     Traceback (most recent call last):
     ...
     ValueError: age must be greater than 0
 
-    >>> bg.distance = -5
-    >>> bg.integer_validator("distance", bg.distance)
+    >>> bg.integer_validator("distance", -5)
     Traceback (most recent call last):
     ...
     ValueError: distance must be greater than 0
 
-Testing the area method:
+Validating area method exception:
     >>> bg.area()
     Traceback (most recent call last):
     ...
