@@ -3,25 +3,25 @@ The `MyList` class inherits from the built-in `list` and adds a `print_sorted` m
 To use it, import the class:
     >>> MyList = __import__('1-my_list').MyList
 
-Instantiate the class and append integers:
+Instantiate the class and append integers (including negative and unsorted numbers):
     >>> my_list = MyList()
     >>> my_list.append(1)
-    >>> my_list.append(4)
+    >>> my_list.append(-4)
     >>> my_list.append(2)
-    >>> my_list.append(3)
+    >>> my_list.append(0)
     >>> my_list.append(5)
 
 Printing the list displays elements in insertion order:
     >>> print(my_list)
-    [1, 4, 2, 3, 5]
+    [1, -4, 2, 0, 5]
 
-The `print_sorted` method prints the elements sorted dynamically:
+The `print_sorted` method prints the elements sorted dynamically (handles negative numbers correctly):
     >>> my_list.print_sorted()
-    [1, 2, 3, 4, 5]
+    [-4, 0, 1, 2, 5]
 
 The original list remains unmodified:
     >>> print(my_list)
-    [1, 4, 2, 3, 5]
+    [1, -4, 2, 0, 5]
 
 Testing with an empty list:
     >>> empty_list = MyList()
