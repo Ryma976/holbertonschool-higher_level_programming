@@ -11,7 +11,7 @@ Testing integer_validator() method:
     >>> bg.integer_validator("my_int", 12)
     >>> bg.integer_validator("width", 89)
 
-Testing integer_validator(“age”) with valid and invalid values:
+Testing integer_validator("age") with valid and invalid values:
 ---------------------------------------------------------------
 
     >>> bg.integer_validator("age", 1)
