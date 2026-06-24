@@ -1,12 +1,12 @@
 =====================================
-How to use 7-base_geometry module
+How to use BaseGeometry class
 =====================================
 
-Importing the class:
+Importing the class dynamically:
     >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
-    >>> bg = BaseGeometry()
 
 Validating integers:
+    >>> bg = BaseGeometry()
     >>> bg.integer_validator("my_int", 12)
     >>> bg.integer_validator("width", 89)
 
