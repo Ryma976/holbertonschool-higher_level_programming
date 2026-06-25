@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Module that defines Shape abstract class with Circle and Rectangle."""
 from abc import ABC, abstractmethod
 import math
@@ -27,7 +27,7 @@ class Circle(Shape):
 
     def area(self):
         """Returns the area of the circle."""
-        return math.pi * (abs(self.radius) ** 2)
+        return math.pi * abs(self.radius) ** 2
 
     def perimeter(self):
         """Returns the perimeter (circumference) of the circle."""
@@ -44,11 +44,11 @@ class Rectangle(Shape):
 
     def area(self):
         """Returns the area of the rectangle."""
-        return abs(self.width) * abs(self.height)
+        return self.width * self.height
 
     def perimeter(self):
         """Returns the perimeter of the rectangle."""
-        return 2 * (abs(self.width) + abs(self.height))
+        return 2 * (self.width + self.height)
 
 
 def shape_info(shape):
