@@ -1,62 +1,57 @@
 #!/usr/bin/python3
-"""
-Module for Shape, Circle, Rectangle classes and duck typing function.
-Ensures outputs for area and perimeter are always positive absolute values.
-"""
+"""Module that defines Shape abstract class with Circle and Rectangle."""
 from abc import ABC, abstractmethod
 import math
 
 
 class Shape(ABC):
-    """Abstract class representing a geometric shape."""
+    """Abstract base class for shapes."""
 
     @abstractmethod
     def area(self):
-        """Calculate the area of the shape."""
+        """Abstract method that returns the area of the shape."""
         pass
 
     @abstractmethod
     def perimeter(self):
-        """Calculate the perimeter of the shape."""
+        """Abstract method that returns the perimeter of the shape."""
         pass
 
 
 class Circle(Shape):
-    """Circle class that inherits from Shape."""
+    """A class that defines a Circle."""
 
     def __init__(self, radius):
-        """Initialize Circle with radius."""
+        """Instantiates a Circle with a given radius."""
         self.radius = radius
 
     def area(self):
-        """Calculate and return absolute circle area."""
-        return abs(math.pi * (self.radius ** 2))
+        """Returns the area of the circle."""
+        return math.pi * (abs(self.radius) ** 2)
 
     def perimeter(self):
-        """Calculate and return absolute circle perimeter."""
-        return abs(2 * math.pi * self.radius)
+        """Returns the perimeter (circumference) of the circle."""
+        return 2 * math.pi * abs(self.radius)
 
 
 class Rectangle(Shape):
-    """Rectangle class that inherits from Shape."""
+    """A class that defines a Rectangle."""
 
     def __init__(self, width, height):
-        """Initialize Rectangle with width and height."""
+        """Instantiates a Rectangle with given width and height."""
         self.width = width
         self.height = height
 
     def area(self):
-        """Calculate and return absolute rectangle area."""
-        return abs(self.width * self.height)
+        """Returns the area of the rectangle."""
+        return abs(self.width) * abs(self.height)
 
     def perimeter(self):
-        """Calculate and return absolute rectangle perimeter."""
-        return abs(2 * (self.width + self.height))
+        """Returns the perimeter of the rectangle."""
+        return 2 * (abs(self.width) + abs(self.height))
 
 
 def shape_info(shape):
-    """
-    Prints the area and perimeter of a given shape using duck typing.
-    """
+    """Prints the area and perimeter of a shape using duck typing."""
     print("Area: {}".format(shape.area()))
     print("Perimeter: {}".format(shape.perimeter()))
