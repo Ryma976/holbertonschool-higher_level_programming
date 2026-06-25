@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
 Module for Shape, Circle, Rectangle classes and duck typing function.
+Ensures outputs for area and perimeter are always positive absolute values.
 """
 from abc import ABC, abstractmethod
 import math
@@ -28,12 +29,12 @@ class Circle(Shape):
         self.radius = radius
 
     def area(self):
-        """Calculate and return circle area."""
-        return math.pi * (self.radius ** 2)
+        """Calculate and return absolute circle area."""
+        return abs(math.pi * (self.radius ** 2))
 
     def perimeter(self):
-        """Calculate and return circle perimeter."""
-        return 2 * math.pi * self.radius
+        """Calculate and return absolute circle perimeter."""
+        return abs(2 * math.pi * self.radius)
 
 
 class Rectangle(Shape):
@@ -45,12 +46,12 @@ class Rectangle(Shape):
         self.height = height
 
     def area(self):
-        """Calculate and return rectangle area."""
-        return self.width * self.height
+        """Calculate and return absolute rectangle area."""
+        return abs(self.width * self.height)
 
     def perimeter(self):
-        """Calculate and return rectangle perimeter."""
-        return 2 * (self.width + self.height)
+        """Calculate and return absolute rectangle perimeter."""
+        return abs(2 * (self.width + self.height))
 
 
 def shape_info(shape):
