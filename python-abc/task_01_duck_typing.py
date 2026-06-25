@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
 Module for Shape, Circle, Rectangle classes and duck typing function.
-Handles negative input values by converting them to positive absolute values.
 """
 from abc import ABC, abstractmethod
 import math
@@ -25,8 +24,8 @@ class Circle(Shape):
     """Circle class that inherits from Shape."""
 
     def __init__(self, radius):
-        """Initialize Circle, ensuring radius is always positive."""
-        self.radius = abs(radius)
+        """Initialize Circle with radius."""
+        self.radius = radius
 
     def area(self):
         """Calculate and return circle area."""
@@ -41,9 +40,9 @@ class Rectangle(Shape):
     """Rectangle class that inherits from Shape."""
 
     def __init__(self, width, height):
-        """Initialize Rectangle, ensuring dimensions are always positive."""
-        self.width = abs(width)
-        self.height = abs(height)
+        """Initialize Rectangle with width and height."""
+        self.width = width
+        self.height = height
 
     def area(self):
         """Calculate and return rectangle area."""
