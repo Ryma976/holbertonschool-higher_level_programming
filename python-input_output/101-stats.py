@@ -26,7 +26,8 @@ if __name__ == "__main__":
             line_count += 1
             parts = line.split()
 
-            try:if len(parts) >= 2:
+            try:
+                if len(parts) >= 2:
                     total_size += int(parts[-1])
                     code = parts[-2]
                     if code in status_codes:
@@ -35,7 +36,10 @@ if __name__ == "__main__":
                 pass
 
             if line_count % 10 == 0:
-                print_stats(total_size, status_codes)print_stats(total_size, status_codes)
+                print_stats(total_size, status_codes)
 
-    except KeyboardInterrupt:print_stats(total_size, status_codes)
+        print_stats(total_size, status_codes)
+
+    except KeyboardInterrupt:
+        print_stats(total_size, status_codes)
         raise
