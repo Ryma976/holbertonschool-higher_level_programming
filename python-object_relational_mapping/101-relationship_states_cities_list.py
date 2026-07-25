@@ -17,13 +17,7 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Querying State and City using outerjoin creates a SINGLE SQL query with proper ordering
-    results = (
-        session.query(State)
-        .outerjoin(City)
-        .order_by(State.id.asc(), City.id.asc())
-        .all()
-    )
+    results = session.query(State).order_by(State.id).all()
 
     for state in results:
         print("{}: {}".format(state.id, state.name))
