@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Lists all State objects and corresponding City objects."""
+"""Lists all State objects and corresponding City objects using relationship."""
 import sys
 from relationship_city import City
 from relationship_state import Base, State
@@ -17,11 +17,10 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = session.query(State).outerjoin(City).order_by(State.id, City.id).all()
-
+    states = session.query(State).order_by(State.id.asc()).all()
     for state in states:
         print("{}: {}".format(state.id, state.name))
-        for city in state.cities:
+        for city in sorted(state.cities, key=lambda c: c.id):
             print("\t{}: {}".format(city.id, city.name))
 
     session.close()
