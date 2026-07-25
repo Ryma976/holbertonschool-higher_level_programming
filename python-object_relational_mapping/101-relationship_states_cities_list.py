@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""Lists all State objects and corresponding City objects using a single query."""
+"""Lists all State objects and corresponding City objects."""
 import sys
 from relationship_city import City
 from relationship_state import Base, State
 from sqlalchemy import create_engine
-from sqlalchemy.orm import joinedload, sessionmaker
+from sqlalchemy.orm import sessionmaker
 
 
 if __name__ == "__main__":
@@ -17,14 +17,9 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = (
-        session.query(State)
-        .options(joinedload(State.cities))
-        .order_by(State.id)
-        .all()
-    )
+    results = session.query(State).outerjoin(City).order_by(State.id, City.id).all()
 
-    for state in states:
+    for state in results:
         print("{}: {}".format(state.id, state.name))
         for city in state.cities:
             print("\t{}: {}".format(city.id, city.name))
