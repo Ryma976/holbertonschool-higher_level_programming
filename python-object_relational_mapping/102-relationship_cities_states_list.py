@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Lists all State objects and corresponding City objects contained in database."""
+"""Lists all City objects from the database hbtn_0e_101_usa using state relationship."""
 import sys
 from relationship_city import City
 from relationship_state import Base, State
@@ -17,16 +17,14 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = (
-        session.query(State)
-        .options(joinedload(State.cities))
-        .order_by(State.id)
+    cities = (
+        session.query(City)
+        .options(joinedload(City.state))
+        .order_by(City.id)
         .all()
     )
 
-    for state in states:
-        print("{}: {}".format(state.id, state.name))
-        for city in state.cities:
-            print("\t{}: {}".format(city.id, city.name))
+    for city in cities:
+        print("{}: {} -> {}".format(city.id, city.name, city.state.name))
 
     session.close()
